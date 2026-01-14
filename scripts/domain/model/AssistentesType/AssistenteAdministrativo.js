@@ -3,11 +3,14 @@ import Assistente from "../Assistente.js";
 export default class AssistenteAdministrativo extends Assistente {
     #turno
 
+    getTurno() {return this.#turno}
+    setTurno(turno) {this.#turno = turno;}
+
     verificarTurno() {
-        if(this.#turno === 'noite') {
+        if(this.getTurno() === 'noite') {
             const adicionalNoturno = 500;
             return this.getSalario() + adicionalNoturno;
-        } else {
+        } else if(this.getTurno() === 'dia') {
             return this.getSalario();
         }
     }
@@ -19,7 +22,7 @@ export default class AssistenteAdministrativo extends Assistente {
     exibeDados() {
         return `Seu nome é ${this.getNome()}, \n
          Seu número de Matrícula é: ${this.getNumeroMatricula()} \n
-         Você trabalha no turno: ${this.#turno} \n
+         Você trabalha no turno: ${this.getTurno()} \n
          Você recebe: R$ ${this.verificarTurno()}, \n
          E seu ganho anual atualmente é: ${this.ganhoAnual()}, \n
         `
